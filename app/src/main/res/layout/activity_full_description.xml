@@ -1,68 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".FullDiscription">
+    tools:context=".FullDescription">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:gravity="center">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_full"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text=""
-            android:textSize="28sp" />
-
-        <ImageView
-            android:id="@+id/image_full"
-            android:layout_width="410dp"
-            android:layout_height="410dp" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description_full"
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxWidth="10sp"
-            android:padding="8dp"
-            android:text=""
-            android:textSize="14sp" />
+            android:orientation="vertical"
+            tools:ignore="MissingConstraints">
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title_full"
+                style="@style/MainTitleAppCompatTextView"
+                android:text="" />
 
+            <ImageView
+                android:id="@+id/image_full"
+                style="@style/MainMovieImage"/>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description_full"
+                style="@style/MainDescriptionAppCompatTextView"
+                android:maxWidth="10sp"
+                android:text="" />
 
-        <EditText
-            android:id="@+id/comment"
+            <com.google.android.material.chip.ChipGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAction"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/categories_move_action"
+                    android:textSize="16sp"
+                    android:theme="@style/Theme.MaterialComponents.Light" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCartoon"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/categories_move_cartoon"
+                    android:textSize="16sp"
+                    android:theme="@style/Theme.MaterialComponents.Light" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipComedy"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/categories_move_cpmedy"
+                    android:textSize="16sp"
+                    android:theme="@style/Theme.MaterialComponents.Light" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="8dp"
-            android:hint="@string/write_comment" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <EditText
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_margin="8dp"
+                android:hint="@string/write_comment" />
 
-    <CheckBox
-        android:id="@+id/likeIt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="@string/i_like_it"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <include layout="@layout/activity_bottom_sheet" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

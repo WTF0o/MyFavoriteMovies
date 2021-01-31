@@ -6,8 +6,7 @@
     android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -15,186 +14,128 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
-            android:minHeight="?actionBarSize"
+            android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:titleTextColor="@android:color/white"
+            android:background="?attr/colorPrimary">
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_header"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:clipToPadding="false"
-        app:menu="@menu/navigation_menu" />
-
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="30dp"
-        android:paddingRight="15dp">
+        android:layout_marginTop="56dp">
 
         <LinearLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="#E6E6E6"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                style="@style/MainCardView">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    style="@style/MainLinearLayoutCompat">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/rick_and_morty_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:text="@string/title_ric_and_morty"
-                        android:textSize="28sp" />
+                        style="@style/MainTitleAppCompatTextView"
+                        android:text="@string/title_ric_and_morty" />
 
                     <ImageView
                         android:id="@+id/rick_and_morty_image"
-                        android:layout_width="410dp"
-                        android:layout_height="410dp"
+                        style="@style/MainMovieImage"
                         app:srcCompat="@drawable/o283ebd3feb35on61i47j" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/rick_and_morty_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/description_ric_and_morty"
-                        android:textSize="14sp" />
+                        style="@style/MainDescriptionAppCompatTextView"
+                        android:text="@string/description_ric_and_morty" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorAccent"
                         android:onClick="rickAndMortyClick"
-                        android:text="@string/more"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        app:icon="@drawable/icons_more"
-                        app:iconSize="16dp" />
+                        style="@style/MainMoreButton"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="#E6E6E6"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                style="@style/MainCardView">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    style="@style/MainLinearLayoutCompat">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/south_park_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:text="@string/title_sounth_park"
-                        android:textSize="28sp" />
+                        style="@style/MainTitleAppCompatTextView"
+                        android:text="@string/title_sounth_park" />
 
                     <ImageView
                         android:id="@+id/south_park_image"
-                        android:layout_width="410dp"
-                        android:layout_height="410dp"
+                        style="@style/MainMovieImage"
                         app:srcCompat="@drawable/south_park_min" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/south_park_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/description_sounth_park"
-                        android:textSize="14sp" />
+                        style="@style/MainDescriptionAppCompatTextView"
+                        android:text="@string/description_sounth_park" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorAccent"
-                        android:onClick="rickAndMortyClick"
-                        android:text="@string/more"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        app:icon="@drawable/icons_more"
-                        app:iconSize="16dp" />
+                        style="@style/MainMoreButton"
+                        android:onClick="southParkClick"/>
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="#E6E6E6"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="8dp">
+                style="@style/MainCardView">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    style="@style/MainLinearLayoutCompat">
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/nachalo_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="16dp"
-                        android:text="@string/title_nachalo"
-                        android:textSize="28sp" />
+                        style="@style/MainTitleAppCompatTextView"
+                        android:text="@string/title_nachalo" />
 
                     <ImageView
                         android:id="@+id/nachalo_image"
-                        android:layout_width="410dp"
-                        android:layout_height="410dp"
+                        style="@style/MainMovieImage"
                         app:srcCompat="@drawable/nachalo" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/nachalo_description"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
-                        android:text="@string/description_nachalo"
-                        android:textSize="14sp" />
+                        style="@style/MainDescriptionAppCompatTextView"
+                        android:text="@string/description_nachalo" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="@color/colorAccent"
-                        android:onClick="rickAndMortyClick"
-                        android:text="@string/more"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        app:icon="@drawable/icons_more"
-                        app:iconSize="16dp" />
+                        style="@style/MainMoreButton"
+                        android:onClick="nachaloClick" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/MainAddMovieButton" />
 
         </LinearLayout>
 
     </ScrollView>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:clipToPadding="false"
+        app:menu="@menu/nav_menu" >
+
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

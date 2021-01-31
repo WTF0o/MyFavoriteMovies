@@ -1,13 +1,16 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.content.Intent.ACTION_SEND
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,13 +19,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        if(savedInstanceState != null) {
-            rick_and_morty_title.setTextColor(savedInstanceState.getInt("colorTitleRick"))
-            south_park_title.setTextColor(savedInstanceState.getInt("colorTitleSouth"))
-            nachalo_title.setTextColor(savedInstanceState.getInt("colorTitleNachalo"))
-        }
 
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
@@ -30,12 +29,59 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        if(savedInstanceState != null) {
+
+            rick_and_morty_title.setTextColor(savedInstanceState.getInt("colorTitleRick"))
+            south_park_title.setTextColor(savedInstanceState.getInt("colorTitleSouth"))
+            nachalo_title.setTextColor(savedInstanceState.getInt("colorTitleNachalo"))
+
+        }
+
+        setAnimationImage("In")
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setAnimationImage("In")
+    }
+
+    private fun setAnimationImage(operation: String, image: ImageView? = null){
+
+        if(operation == "In"){
+            val anamationIn = AnimationUtils.loadAnimation(this, R.anim.fade_in)
+            rick_and_morty_image.startAnimation(anamationIn)
+            nachalo_image.startAnimation(anamationIn)
+            south_park_image.startAnimation(anamationIn)
+        }
+        else if(operation == "Out"){
+            val anamationOut = AnimationUtils.loadAnimation(this, R.anim.fade_out)
+            image?.startAnimation(anamationOut)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
                 drawer.openDrawer(GravityCompat.START)
+                true
+            }
+            R.id.invite_friend -> {
+                val intent = Intent()
+                intent.action = ACTION_SEND
+                intent.putExtra(Intent.EXTRA_TEXT, "Как тебе мое приложение?")
+                intent.type = "text/plain"
+
+                if (intent.resolveActivity(packageManager) != null) {
+                    startActivity(intent)
+                }
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -60,34 +106,45 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putInt("colorTitleRick",rick_and_morty_title.currentTextColor)
-        outState.putInt("colorTitleSouth",south_park_title.currentTextColor)
-        outState.putInt("colorTitleNachalo",nachalo_title.currentTextColor)
+        outState.putInt("colorTitleRick", rick_and_morty_title.currentTextColor)
+        outState.putInt("colorTitleSouth", south_park_title.currentTextColor)
+        outState.putInt("colorTitleNachalo", nachalo_title.currentTextColor)
     }
 
     fun rickAndMortyClick(view: View) {
         rick_and_morty_title.setTextColor(Color.BLUE)
-        val fullDescriptionIntent = Intent(this,FullDiscription::class.java)
+        val fullDescriptionIntent = Intent(this,FullDescription::class.java)
         fullDescriptionIntent.putExtra("description",rick_and_morty_description.text)
-        fullDescriptionIntent.putExtra("image",R.drawable.o283ebd3feb35on61i47j)
+        fullDescriptionIntent.putExtra("image", R.drawable.o283ebd3feb35on61i47j)
+        setAnimationImage("Out", rick_and_morty_image)
         startActivityForResult(fullDescriptionIntent,404)
     }
 
     fun southParkClick(view: View) {
         south_park_title.setTextColor(Color.BLUE)
-        val fullDescriptionIntent = Intent(this,FullDiscription::class.java)
+        val fullDescriptionIntent = Intent(this,FullDescription::class.java)
         fullDescriptionIntent.putExtra("description",south_park_description.text)
         fullDescriptionIntent.putExtra("image",R.drawable.south_park_min)
+        setAnimationImage("Out", south_park_image)
         startActivityForResult(fullDescriptionIntent,404)
     }
+
     fun nachaloClick(view: View) {
         nachalo_title.setTextColor(Color.BLUE)
-        val fullDescriptionIntent = Intent(this,FullDiscription::class.java)
+        val fullDescriptionIntent = Intent(this,FullDescription::class.java)
         fullDescriptionIntent.putExtra("description",nachalo_description.text)
         fullDescriptionIntent.putExtra("image",R.drawable.nachalo)
+        setAnimationImage("Out", nachalo_image)
         startActivityForResult(fullDescriptionIntent,404)
     }
+
+    fun addMovie(view: View) {
+       val activityFragment =  this.layoutInflater.inflate(R.layout.activity_fragment_movie, null, false)
+        container.addView(activityFragment, container.childCount - 1)
+    }
+
+
+
 }

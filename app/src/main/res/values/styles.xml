@@ -1,20 +1,65 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+    <style name="MainCardView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="cardBackgroundColor">#E6E6E6</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">8dp</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="MainLinearLayoutCompat">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="MainTitleAppCompatTextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="MainDescriptionAppCompatTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MainMoreButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/colorAccent</item>
+        <item name="android:theme">@style/Theme.MaterialComponents.Light</item>
+        <item name="icon">@drawable/icons_more</item>
+        <item name="iconSize">16dp</item>
+        <item name="android:text">@string/more</item>
+    </style>
+
+    <style name="MainAddMovieButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/add_movie</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:theme">@style/Theme.MaterialComponents.Light</item>
+        <item name="android:backgroundTint" tools:targetApi="lollipop">@color/colorAccent</item>
+        <item name="android:onClick">addMovie</item>
+    </style>
+
+    <style name="MainMovieImage">
+        <item name="android:layout_width">410dp</item>
+        <item name="android:layout_height">410dp</item>
+    </style>
+
 
 </resources>
