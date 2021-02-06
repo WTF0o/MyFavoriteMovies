@@ -4,19 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".FullDescription">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbarFullDescription"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
+        android:layout_height="600dp"
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingFullDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/title_full"
@@ -25,58 +31,95 @@
 
             <ImageView
                 android:id="@+id/image_full"
-                style="@style/MainMovieImage"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:fitsSystemWindows="true"
+                app:layout_collapseMode="parallax"/>
+
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbarFullDescription"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintFullDescription"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.core.widget.NestedScrollView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/nestedScrollFullDescription"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <androidx.appcompat.widget.AppCompatTextView
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 android:id="@+id/description_full"
                 style="@style/MainDescriptionAppCompatTextView"
                 android:maxWidth="10sp"
                 android:text="" />
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="match_parent"
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.chip.ChipGroup
+            app:layout_constraintTop_toBottomOf="@id/nestedScrollFullDescription"
+            android:id="@+id/chipGroupFullDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAction"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:singleLine="true">
+                android:checked="true"
+                android:text="@string/categories_move_action"
+                android:textSize="16sp"
+                android:theme="@style/Theme.MaterialComponents.Light" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAction"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/categories_move_action"
-                    android:textSize="16sp"
-                    android:theme="@style/Theme.MaterialComponents.Light" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipCartoon"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/categories_move_cartoon"
+                android:textSize="16sp"
+                android:theme="@style/Theme.MaterialComponents.Light" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipCartoon"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/categories_move_cartoon"
-                    android:textSize="16sp"
-                    android:theme="@style/Theme.MaterialComponents.Light" />
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipComedy"
+                style="@style/Widget.MaterialComponents.Chip.Choice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/categories_move_cpmedy"
+                android:textSize="16sp"
+                android:theme="@style/Theme.MaterialComponents.Light" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipComedy"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/categories_move_cpmedy"
-                    android:textSize="16sp"
-                    android:theme="@style/Theme.MaterialComponents.Light" />
+        </com.google.android.material.chip.ChipGroup>
 
-            </com.google.android.material.chip.ChipGroup>
-
-        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/chipGroupFullDescription">
 
             <EditText
                 android:id="@+id/comment"

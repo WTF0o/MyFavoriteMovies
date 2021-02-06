@@ -20,5 +20,9 @@
     <string name="categories_move_cartoon">Мультфильм</string>
     <string name="categories_move_cpmedy">Комедия</string>
     <string name="add_favorite">Фильм добавлен в избранные</string>
+    <string name="how_do_you_like_my_app">Как тебе мое приложение?</string>
+    <string name="question_do_you_want_leave">Желаете выйти?</string>
+    <string name="answer_yes">Да</string>
+    <string name="answer_no">Нет</string>
 </resources>
 

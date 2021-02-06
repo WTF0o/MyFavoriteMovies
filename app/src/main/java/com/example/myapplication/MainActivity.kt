@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.Intent.ACTION_SEND
 import android.graphics.Color
@@ -11,8 +12,11 @@ import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         drawerToggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        setupDrawerContent(navigation_view);
 
         if(savedInstanceState != null) {
 
@@ -40,6 +47,23 @@ class MainActivity : AppCompatActivity() {
         setAnimationImage("In")
 
     }
+
+    private fun setupDrawerContent(navigationView: NavigationView?) {
+        navigationView?.setNavigationItemSelectedListener { item: MenuItem ->
+            when(item.itemId){
+                R.id.nav_exit -> {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle(getString(R.string.question_do_you_want_leave))
+                    .setCancelable(true)
+                    .setPositiveButton(getString(R.string.answer_yes)){ dialogInterface: DialogInterface, id: Int -> finish()}
+                    .setNegativeButton(getString(R.string.answer_no)) { dialogInterface: DialogInterface, id: Int -> }.show()
+                true
+            }
+                else -> true
+            }
+        }
+    }
+
 
     override fun onResume() {
         super.onResume()
@@ -75,13 +99,12 @@ class MainActivity : AppCompatActivity() {
             R.id.invite_friend -> {
                 val intent = Intent()
                 intent.action = ACTION_SEND
-                intent.putExtra(Intent.EXTRA_TEXT, "Как тебе мое приложение?")
+                intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.how_do_you_like_my_app))
                 intent.type = "text/plain"
 
                 if (intent.resolveActivity(packageManager) != null) {
                     startActivity(intent)
                 }
-
                 true
             }
             else -> super.onOptionsItemSelected(item)
